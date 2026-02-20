@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Botany - Marketplace de Plantas</title>
+</head>
+
+<body>
+    <!-- NAVEGACAO -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">🌿</div>
+                    <div class="logo-text">Botany</div>
+                </a>
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar plantas..." id="searchInput">
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-ghost btn-icon" onclick="showPage('cart')">🛒</button>
+                    <button class="btn btn-primary" onclick="showPage('profile')">Meu Perfil</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGINA HOME -->
+    <div id="home" class="page active">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>
+                            <span class="highlight">Plantas Perfeitas</span><br>
+                            Para Seu Espaco
+                        </h1>
+                        <p>Descubra uma colecao elegante de plantas selecionadas. Compre de vendedores confiáveis ou
+                            venda suas próprias plantas com facilidade.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="showPage('catalog')">
+                                Explorar Catalogo →
+                            </button>
+                            <button class="btn btn-outline" onclick="showPage('seller')">
+                                Vender Plantas
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image">🌱</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANTAS EM DESTAQUE -->
+        <section>
+            <div class="container">
+                <div style="text-align: center;">
+                    <h2 class="section-title">Plantas em Destaque</h2>
+                    <p class="section-subtitle">Selecao especial das melhores plantas disponíveis</p>
+                </div>
+                <div class="plants-grid" id="featuredPlants"></div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section>
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Plantas Selecionadas</h3>
+                        <p>Qualidade garantida em cada planta</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🛒</div>
+                        <h3>Compra Facil</h3>
+                        <p>Processo simples e seguro</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Comunidade</h3>
+                        <p>Conecte-se com outros amantes de plantas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGINA CATALOGO -->
+    <div id="catalog" class="page">
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <h2 class="section-title">Catalogo de Plantas</h2>
+                <p class="section-subtitle">Encontre a planta perfeita para seu espaco</p>
+
+                <div class="filters-section">
+                    <div class="filters-sidebar">
+                        <div class="filter-group">
+                            <div class="filter-title">CATEGORIA</div>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="radio" name="category" value="all" checked onchange="filterPlants()">
+                                    Todas
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="category" value="Suculentas" onchange="filterPlants()">
+                                    Suculentas
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="category" value="Flores" onchange="filterPlants()">
+                                    Flores
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="category" value="Arbustos" onchange="filterPlants()">
+                                    Arbustos
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="category" value="Cactos" onchange="filterPlants()">
+                                    Cactos
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-title">PRECO</div>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="radio" name="price" value="all" checked onchange="filterPlants()">
+                                    Todos
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="price" value="0-50" onchange="filterPlants()">
+                                    Ate R$ 50
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="price" value="50-100" onchange="filterPlants()">
+                                    R$ 50 - R$ 100
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="price" value="100-200" onchange="filterPlants()">
+                                    R$ 100 - R$ 200
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="price" value="200+" onchange="filterPlants()">
+                                    Acima de R$ 200
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="plants-grid" id="catalogPlants"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGINA CARRINHO -->
+    <div id="cart" class="page">
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <h2 class="section-title">Seu Carrinho</h2>
+                <div id="cartContent" style="margin-top: 32px;">
+                    <div style="text-align: center; padding: 48px 0;">
+                        <div style="font-size: 60px; margin-bottom: 16px;">🛒</div>
+                        <p style="color: var(--gray-600); font-size: 18px;">Seu carrinho esta vazio</p>
+                        <button class="btn btn-primary" style="margin-top: 24px;" onclick="showPage('catalog')">
+                            Explorar Catalogo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGINA PERFIL -->
+    <div id="profile" class="page">
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <h2 class="section-title">Meu Perfil</h2>
+                <div
+                    style="background: var(--white); padding: 32px; border-radius: 16px; margin-top: 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 20px; margin-bottom: 24px;">Informacoes Pessoais</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Nome</label>
+                            <input type="text" placeholder="Seu nome"
+                                style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Email</label>
+                            <input type="email" placeholder="seu@email.com"
+                                style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label
+                            style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Telefone</label>
+                        <input type="tel" placeholder="(XX) XXXXX-XXXX"
+                            style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">Salvar Alteracoes</button>
+                </div>
+
+                <div
+                    style="background: linear-gradient(135deg, var(--primary-light), rgba(20, 184, 166, 0.05)); padding: 24px; border-radius: 16px; margin-top: 32px; border: 1px solid var(--primary-light);">
+                    <h3 style="font-size: 18px; margin-bottom: 12px;">Comece a Vender</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 16px;">Transforme suas plantas em renda extra</p>
+                    <button class="btn btn-primary" onclick="showPage('seller')">Tornar-se Vendedor</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGINA VENDEDOR -->
+    <div id="seller" class="page">
+        <section style="padding: 40px 0;">
+            <div class="container">
+                <h2 class="section-title">Criar Novo Anuncio</h2>
+                <div
+                    style="background: var(--white); padding: 32px; border-radius: 16px; margin-top: 32px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); max-width: 600px;">
+                    <form onsubmit="handleCreatePlant(event)">
+                        <div style="margin-bottom: 24px;">
+                            <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Nome
+                                da Planta *</label>
+                            <input type="text" placeholder="Ex: Monstera Deliciosa" required
+                                style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                        </div>
+
+                        <div style="margin-bottom: 24px;">
+                            <label
+                                style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Descricao
+                                *</label>
+                            <textarea placeholder="Descreva sua planta em detalhes" required
+                                style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px; resize: vertical; min-height: 100px;"></textarea>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                            <div>
+                                <label
+                                    style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Categoria
+                                    *</label>
+                                <select required
+                                    style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                                    <option>Suculentas</option>
+                                    <option>Flores</option>
+                                    <option>Arbustos</option>
+                                    <option>Cactos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label
+                                    style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Preco
+                                    (R$) *</label>
+                                <input type="number" step="0.01" placeholder="0.00" required
+                                    style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 24px;">
+                            <label
+                                style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Localizacao
+                                *</label>
+                            <input type="text" placeholder="Sua cidade/estado" required
+                                style="width: 100%; padding: 10px 16px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px;">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Criar Anuncio</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL DETALHES -->
+    <div id="plantModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePlantModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2026 Botany Marketplace. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="script.js"></script>
+</html>
